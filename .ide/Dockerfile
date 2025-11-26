@@ -25,7 +25,10 @@ ENV LC_ALL=C.UTF-8
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # install uv
-RUN  curl -LsSf https://astral.sh/uv/install.sh | sh
+RUN  curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/zsh/zshenv && \
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/profile && \
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> /root/.zshrc
 
 # 安装 Oh My Zsh（无人机模式）
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
