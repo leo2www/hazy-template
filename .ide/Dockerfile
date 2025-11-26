@@ -9,8 +9,7 @@ RUN apt-get update && \
         vim \
         openssh-server \
         zsh \
-        unzip 
-        fonts-powerline \
+        unzip \
         locales && \
     rm -rf /var/lib/apt/lists/*
 
