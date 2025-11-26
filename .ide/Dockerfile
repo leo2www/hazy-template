@@ -22,7 +22,24 @@ ENV LC_ALL=C.UTF-8
 
 
 # 安装 code-server（IDE 环境需要）
-RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN curl -fsSL https://code-server.dev/install.sh | sh \
+    && code-server --install-extension cnbcool.cnb-welcome \
+    && code-server --install-extension redhat.vscode-yaml \
+    && code-server --install-extension dbaeumer.vscode-eslint \
+    && code-server --install-extension waderyan.gitblame \
+    && code-server --install-extension mhutchie.git-graph \
+    && code-server --install-extension donjayamanne.githistory \
+    && code-server --install-extension ms-python.python \
+    && code-server --install-extension ms-python.vscode-pylance \
+    && code-server --install-extension ms-python.vscode-python-envs \
+    && code-server --install-extension ms-python.debugpy \
+    && code-server --install-extension GitHub.copilot-chat \
+    && code-server --install-extension GitHub.copilot \
+    && code-server --install-extension ms-toolsai.jupyter \
+    && code-server --install-extension ms-toolsai.vscode-jupyter-cell-tags \
+    && code-server --install-extension ms-toolsai.jupyter-keymap \
+    && code-server --install-extension  ms-toolsai.jupyter-renderers \
+    && echo done
 
 # Python
 ARG PYTHON_VERSION=3.13
