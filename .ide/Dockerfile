@@ -38,6 +38,16 @@ RUN curl -fsSL https://code-server.dev/install.sh | sh \
     && code-server --install-extension ms-toolsai.jupyter-renderers \
     && echo done
 
+# configurate vscode ssh
+# Enable SSH TCP Forwarding for VSCode
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication no" >> /etc/ssh/sshd_config && \
+    echo "AllowTcpForwarding yes" >> /etc/ssh/sshd_config && \
+    echo "GatewayPorts yes" >> /etc/ssh/sshd_config && \
+    echo "PermitOpen any" >> /etc/ssh/sshd_config
+
+
+
 # Python
 ARG PYTHON_VERSION=3.13
 ENV PYTHON_VERSION=${PYTHON_VERSION}
@@ -74,6 +84,6 @@ RUN sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highligh
 
 # 默认 shell 设置为 zsh
 RUN chsh -s /usr/bin/zsh
-
+CMD ["/usr/sbin/sshd", "-D"]
 # 默认工作目录
 WORKDIR /workspace
