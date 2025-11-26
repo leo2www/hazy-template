@@ -30,12 +30,9 @@ RUN  curl -LsSf https://astral.sh/uv/install.sh | sh
 # 安装 Oh My Zsh（无人机模式）
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# 安装 Powerlevel10k 主题
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-    /root/.oh-my-zsh/custom/themes/powerlevel10k
+# 设置 oh-my-zsh 的轻量主题（默认为 robbyrussell，可改为 agnoster）
+RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="agnoster"/g' /root/.zshrc
 
-# 设置 Powerlevel10k 为默认主题
-RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' /root/.zshrc
 
 # 安装 zsh 增强插件：自动补全 + 语法高亮
 RUN git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions \
