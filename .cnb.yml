@@ -2,9 +2,9 @@
 $:
   vscode:
     - runner:
-        tags: cnb:arch:amd64:gpu
-        # tags: cnb:arch:amd64:v8
-        # cpus: 8
+        # tags: cnb:arch:amd64:gpu
+        tags: cnb:arch:amd64:v8
+        cpus: 8
 
       docker:
         # 指定开发环境镜像，可以是任意可访问的镜像。
