@@ -35,8 +35,9 @@ RUN  curl -LsSf https://astral.sh/uv/install.sh | sh && \
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> /root/.zshrc
 # 预装 Python 3.13
 RUN /root/.local/bin/uv python install  ${PYTHON_VERSION}
-# 设置全局默认 Python
-RUN ln -sf $(/root/.local/bin/uv python find  ${PYTHON_VERSION}) /usr/local/bin/python && \
+# 设置全局默认 Python 不依赖 bash
+RUN PY=$( /root/.local/bin/uv python find ${PYTHON_VERSION} ) && \
+    ln -sf $PY /usr/local/bin/python && \
     ln -sf /usr/local/bin/python /usr/local/bin/python3
 
 
