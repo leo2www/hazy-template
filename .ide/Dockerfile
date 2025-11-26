@@ -30,8 +30,9 @@ RUN  curl -LsSf https://astral.sh/uv/install.sh | sh
 # 安装 Oh My Zsh（无人机模式）
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# 设置 oh-my-zsh 的轻量主题（默认为 robbyrussell，可改为 agnoster）
-RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="agnoster"/g' /root/.zshrc
+# 使用 Oh My Zsh 的默认主题（robbyrussell）
+# 注：默认就是 robbyrussell，这里只是确保写入
+RUN sed -i 's/ZSH_THEME=".*"/ZSH_THEME="robbyrussell"/g' /root/.zshrc
 
 
 # 安装 zsh 增强插件：自动补全 + 语法高亮
