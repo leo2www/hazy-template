@@ -30,15 +30,12 @@ RUN curl -fsSL https://code-server.dev/install.sh | sh \
     && code-server --install-extension mhutchie.git-graph \
     && code-server --install-extension donjayamanne.githistory \
     && code-server --install-extension ms-python.python \
-    && code-server --install-extension ms-python.vscode-pylance \
     && code-server --install-extension ms-python.vscode-python-envs \
     && code-server --install-extension ms-python.debugpy \
-    && code-server --install-extension GitHub.copilot-chat \
-    && code-server --install-extension GitHub.copilot \
     && code-server --install-extension ms-toolsai.jupyter \
     && code-server --install-extension ms-toolsai.vscode-jupyter-cell-tags \
     && code-server --install-extension ms-toolsai.jupyter-keymap \
-    && code-server --install-extension  ms-toolsai.jupyter-renderers \
+    && code-server --install-extension ms-toolsai.jupyter-renderers \
     && echo done
 
 # Python
