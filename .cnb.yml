@@ -3,7 +3,7 @@ $:
   vscode:
     - runner:
         # tags: cnb:arch:amd64:gpu
-        tags: cnb:arch:amd64:v8
+        tags: cnb:arch:amd64
         cpus: 8
 
       docker:
