@@ -24,11 +24,21 @@ ENV LC_ALL=C.UTF-8
 # 安装 code-server（IDE 环境需要）
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
+# Python
+ARG PYTHON_VERSION=3.13
+ENV PYTHON_VERSION=${PYTHON_VERSION}
+
 # install uv
 RUN  curl -LsSf https://astral.sh/uv/install.sh | sh && \
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/zsh/zshenv && \
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/profile && \
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> /root/.zshrc
+# 预装 Python 3.13
+RUN /root/.local/bin/uv python install  ${PYTHON_VERSION}
+# 设置全局默认 Python
+RUN ln -sf $(/root/.local/bin/uv python find  ${PYTHON_VERSION}) /usr/local/bin/python && \
+    ln -sf /usr/local/bin/python /usr/local/bin/python3
+
 
 # 安装 Oh My Zsh（无人机模式）
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
